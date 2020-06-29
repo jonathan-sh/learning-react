@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './me.svg';
 import './Home.css';
+import { Button } from '@material-ui/core';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <p>
           learning react :)
         </p>
-      </header>
+        <Button variant="contained" color="primary"> material ui </Button>
+      </header>      
     </div>
   );
 }
