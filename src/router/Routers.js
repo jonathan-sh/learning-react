@@ -7,7 +7,6 @@ import {
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './../theme';
-
 import Login from "../login";
 import Dash from "../dash/Dash";
 
