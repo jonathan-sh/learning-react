@@ -1,30 +1,30 @@
-import React from "react";
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route
-} from "react-router-dom";
+} from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from './../theme';
-import Login from "../login";
-import Dash from "../dash/Dash";
 
-export default function Routers() {
+import theme from './../theme';
+import Login from '../pages/login';
+import Dash from '../pages/dash';
+import PrivateRoute from './PrivateRoute';
+
+export default () => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Router>
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path='/'>
                         <Login />
                     </Route>
-                    <Route path="/dash">
+                    <PrivateRoute path='/dash'>
                         <Dash />
-                    </Route>
+                    </PrivateRoute>
                 </Switch>
             </Router>
-        </ThemeProvider>
-
-    );
+        </ThemeProvider>);
 }

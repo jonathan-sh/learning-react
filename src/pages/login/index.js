@@ -3,15 +3,15 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { useHistory } from 'react-router-dom';
 
-import Copyright from '../components/copyright';
-import Toast from '../components/toast';
+import Copyright from '../../components/copyright';
+import Toast from '../../components/toast';
+import useVerify from '../../util/hooks/useVerify';
 import useStyles from './style';
-import service from "./service";
-import { useHistory } from "react-router-dom";
-import useVerify from '../util/hooks/useVerify';
+import service from './service';
 
-export default function SignIn() {
+export default () => {
     const [email, setEmail] = useState('');
     const [emailRef, verifyEmail] = useVerify();
 
@@ -20,7 +20,6 @@ export default function SignIn() {
 
     const [alerError, setAlerError] = useState(false);
     
-
     const classes = useStyles();
     const history = useHistory();
 
@@ -36,7 +35,6 @@ export default function SignIn() {
                         label='Email'
                         autoComplete='email'
                         onChange={(event) => setEmail(event.target.value)}
-                        required
                         fullWidth
                         autoFocus
                     />
@@ -49,7 +47,6 @@ export default function SignIn() {
                         type='password'
                         onChange={(event) => setPassword(event.target.value)}
                         autoComplete='current-password'
-                        required
                         fullWidth
                     />
 
@@ -73,9 +70,9 @@ export default function SignIn() {
                 open={alerError} 
                 duration={4}
                 onClose={() => setAlerError(false)}
-                variant="filled" 
-                severity="warning"
-                text="Credencias invalidas"
+                variant='filled' 
+                severity='warning'
+                text='Credencias invalidas'
             />
             <Copyright />
         </div >
