@@ -1,7 +1,12 @@
 import axios from "axios";
 
-const instance = axios.create({
-    baseURL: 'https://api.saas-solinftec.com/cerrado-mineiro/'
-});
+const instance = () =>{
+    let options = {baseURL: 'http://127.0.0.1:4212/'};
+    if(localStorage.getItem('token')){
+        options['headers'] =  {'auth': localStorage.getItem('token')};
+    }
+ 
+    return axios.create(options);
+}
 
-export default instance
+export default instance()

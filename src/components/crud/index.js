@@ -14,21 +14,18 @@ const getForm = (itens) => {
     let object = {};
     let checkers = []
     const form = itens.map(it => {
-        const [value, setValue] = useState();
         const [fieldRef, fieldVerify] = useVerify();
         checkers.push(fieldVerify)
         return (<TextField
             key={it.name}
             variant='outlined'
             margin='normal'
-            value={value}
             inputRef={fieldRef}
             label={it.label}
             type={it.type || 'text'}
             autoComplete={it.auto}
             onChange={(event) => {
                 object[it.name] = event.target.value;
-                setValue(object[it.name]);
             }}
             fullWidth />)
     })

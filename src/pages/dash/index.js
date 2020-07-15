@@ -16,7 +16,6 @@ import { mainListItems, secondaryListItems } from './listItems';
 
 import Crud from '../../components/crud/index';
 import Table from '../../components/table/index';
-
 import useStyles from './style';
 
 export default function Dashboard() {
@@ -32,6 +31,7 @@ export default function Dashboard() {
         setOpen(false);
     };
 
+    console.log("dash");
     return (
         <div className={classes.root}>
             <AppBar position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -74,7 +74,6 @@ export default function Dashboard() {
             </Drawer>
            
             <div className={classes.body}>
-
 
                 <Table/>
                 <Crud

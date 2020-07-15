@@ -7,21 +7,10 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 import makeStates from './style';
 
-const headCells = [
-    { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-    { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
-];
-
-export default (props) => {
+export default ({ order, orderBy, numSelected, rowCount, onRequestSort, onSelectAllClick, fields }) => {
     const classes =  makeStates();
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-    const createSortHandler = (property) => (event) => {
-        onRequestSort(event, property);
-    };
-
+    const createSortHandler = (property) => (event) => onRequestSort(event, property);
+   
     return (
         <TableHead>
             <TableRow>
@@ -33,20 +22,39 @@ export default (props) => {
                         inputProps={{ 'aria-label': 'select all desserts' }}
                     />
                 </TableCell>
-                {headCells.map((headCell) => (
-                    <TableCell
-                        key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
-                        padding={headCell.disablePadding ? 'none' : 'default'}
-                        sortDirection={orderBy === headCell.id ? order : false}>
+                <TableCell
+                        key={'id'}
+                        align='left'
+                        sortDirection={orderBy === 'id' ? order : false}>
 
                         <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
+                            active={orderBy === 'id'}
+                            direction={orderBy === 'id' ? order : 'asc'}
+                            onClick={createSortHandler('id')}
                         >
-                            {headCell.label}
-                            {orderBy === headCell.id ? 
+                            {'id'}
+                            {orderBy === 'id' ? 
+                            (
+                                <span className={classes.visuallyHidden}>
+                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                                </span>
+                            ) : null }
+                        </TableSortLabel>
+                    </TableCell>
+      
+                {fields.map((field) => (
+                    <TableCell
+                        key={field.name}
+                        align='left'
+                        sortDirection={orderBy === field.name ? order : false}>
+
+                        <TableSortLabel
+                            active={orderBy === field.name}
+                            direction={orderBy === field.name ? order : 'asc'}
+                            onClick={createSortHandler(field.name)}
+                        >
+                            {field.label}
+                            {orderBy === field.name ? 
                             (
                                 <span className={classes.visuallyHidden}>
                                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
